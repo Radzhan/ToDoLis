@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.taskForm{
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 500px;
+  margin: 10px auto;
+  pdding: 8px;
+  border: solid 1px gray;
+}
+
+

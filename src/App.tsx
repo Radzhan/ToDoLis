@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import AddTaskForm from "./addTaskForm";
 
 function App() {
+  const [newTask, setNewTask] = useState([
+    {task: 'сделать дз'},
+    {task: 'помочь маме'},
+    {task: 'поиграть видео игры'},
+  ])
+
+  const createNewTask = (event: string) => {
+    setNewTask([
+      {task: event}
+    ])
+  }
+
+  const qwer = (a: string) => {
+    const copyNewTask = [...newTask]
+    const qwer = {task: a};
+    copyNewTask.push(qwer)
+    setNewTask(copyNewTask)
+  }
+
+  const dealiteTask = (index: number)=>{
+
+    const copyTasks = [...newTask];
+    copyTasks.splice(index, 1)
+    setNewTask(copyTasks)
+  }
+  let taskList = newTask.map((goal , index) => (
+    <AddTaskForm task={goal.task} dealite={() => dealiteTask(index)}/>
+  ))
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input/>
+      <button onClick={()=>qwer('q')}>Add</button>
+      {taskList}
     </div>
   );
 }

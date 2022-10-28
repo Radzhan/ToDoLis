@@ -8,33 +8,33 @@ function App() {
     {task: 'помочь маме'},
     {task: 'поиграть видео игры'},
   ])
-
-  const createNewTask = (event: string) => {
-    setNewTask([
-      {task: event}
-    ])
+  let asdf: string;
+  const createTask = (event: React.ChangeEvent<HTMLInputElement>) => {
+    asdf = event.target.value
   }
 
-  const qwer = (a: string) => {
+  const toogleTask = () => {
     const copyNewTask = [...newTask]
-    const qwer = {task: a};
+    const qwer = {task: asdf};
     copyNewTask.push(qwer)
     setNewTask(copyNewTask)
   }
 
-  const dealiteTask = (index: number)=>{
-
+  const dealiteTask = (index: number) => {
     const copyTasks = [...newTask];
     copyTasks.splice(index, 1)
     setNewTask(copyTasks)
   }
-  let taskList = newTask.map((goal , index) => (
-    <AddTaskForm task={goal.task} dealite={() => dealiteTask(index)}/>
-  ))
+
+    let taskList = newTask.map((goal, index) => (
+      <AddTaskForm task={goal.task} dealite={() => dealiteTask(index)}/>
+    ))
+
+
   return (
     <div className="App">
-      <input/>
-      <button onClick={()=>qwer('q')}>Add</button>
+      <input onChange={createTask}/>
+      <button onClick={toogleTask}>Add</button>
       {taskList}
     </div>
   );
